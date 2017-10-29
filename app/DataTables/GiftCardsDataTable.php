@@ -43,7 +43,7 @@ class GiftCardsDataTable extends DataTable
                 ->leftJoin('shipping_methods', function($join) {
                     $join->on('shipping_methods.id', '=', 'gift_cards.shipping_id');
                 })
-                ->select(['gift_cards.id AS id', 'gift_cards.order_number AS order_number', 'gift_cards.code AS order_code', 'gift_cards.reference AS order_reference', 'gift_cards.amount AS amount', 'gift_cards.quantity AS quantity', 'gift_cards.shipping AS shipping', 'gift_cards.total AS total', 'gift_cards.sendto AS sendto', 'gift_cards.name AS name', 'gift_cards.email AS email', 'gift_cards.phone AS phone', 'gift_cards.address AS address', 'gift_cards.address2 AS address2', 'gift_cards.city AS city', 'gift_cards.state AS state', 'gift_cards.zip AS zip', 'gift_cards.country AS country', 'gift_cards.cctype AS cctype', 'gift_cards.ccnumber AS ccnumber', 'gift_cards.created_at AS created_at', 'delivery_types.name AS delivery_type', 'shipping_methods.name AS shipping_method'])
+                ->select(['gift_cards.id AS id', 'gift_cards.order_number AS order_number', 'gift_cards.code AS order_code', 'gift_cards.reference AS order_reference', 'gift_cards.amount AS amount', 'gift_cards.quantity AS quantity', 'gift_cards.shipping AS shipping', 'gift_cards.total AS total', 'gift_cards.sendto AS sendto', 'gift_cards.name AS name', 'gift_cards.email AS email', 'gift_cards.phone AS phone', 'gift_cards.address AS address', 'gift_cards.address2 AS address2', 'gift_cards.city AS city', 'gift_cards.state AS state', 'gift_cards.zip AS zip', 'gift_cards.country AS country', 'gift_cards.cctype AS cctype', 'gift_cards.ccnumber AS ccnumber', 'gift_cards.created_at AS created_at', 'delivery_types.name AS delivery_type', 'shipping_methods.name AS shipping_method', 'gift_cards.pool_numbers AS pool_numbers'])
                 ->where('gift_cards.status', 'Approved');
 
         return $this->applyScopes($query);
@@ -72,14 +72,15 @@ class GiftCardsDataTable extends DataTable
             ->addColumn(['data' => 'name', 'name' => 'gift_cards.name', 'title' => 'Name'])
             ->addColumn(['data' => 'email', 'name' => 'gift_cards.email', 'title' => 'Email'])
             ->addColumn(['data' => 'phone', 'name' => 'gift_cards.phone', 'title' => 'Phone', 'visible' => false])
-            ->addColumn(['data' => 'address', 'name' => 'gift_cards.address', 'title' => 'Address'])
+            ->addColumn(['data' => 'address', 'name' => 'gift_cards.address', 'title' => 'Address', 'visible' => false])
             ->addColumn(['data' => 'address2', 'name' => 'gift_cards.address2', 'title' => 'Address 2', 'visible' => false])
-            ->addColumn(['data' => 'city', 'name' => 'gift_cards.city', 'title' => 'City'])
-            ->addColumn(['data' => 'state', 'name' => 'gift_cards.state', 'title' => 'State'])
+            ->addColumn(['data' => 'city', 'name' => 'gift_cards.city', 'title' => 'City', 'visible' => false])
+            ->addColumn(['data' => 'state', 'name' => 'gift_cards.state', 'title' => 'State', 'visible' => false])
             ->addColumn(['data' => 'zip', 'name' => 'gift_cards.zip', 'title' => 'Zip Code', 'visible' => false])
             ->addColumn(['data' => 'country', 'name' => 'gift_cards.country', 'title' => 'Country', 'visible' => false])
             ->addColumn(['data' => 'cctype', 'name' => 'gift_cards.cctype', 'title' => 'CC Type', 'visible' => false])
             ->addColumn(['data' => 'ccnumber', 'name' => 'gift_cards.ccnumber', 'title' => 'CC Number', 'visible' => false])
+            ->addColumn(['data' => 'pool_numbers', 'name' => 'gift_cards.pool_numbers', 'title' => 'Cards'])
             ->addColumn(['data' => 'created_at', 'name' => 'gift_cards.created_at', 'title' => 'Date', 'type' => 'date'])
             ->minifiedAjax('')
             ->addAction(['width' => '80px'])

@@ -29,6 +29,8 @@ class CreateAddressesTable extends Migration
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
             $table->text('message')->nullable();
+            $table->integer('shipping_id')->unsigned()->default(0);
+            $table->decimal('shipping', 10, 2)->default(0);
         });
     }
 

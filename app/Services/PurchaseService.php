@@ -116,7 +116,11 @@ class PurchaseService
                 $this->setPoolNumbers($giftCard);
 
             } catch (\Exception $ex) {
-                throw $ex;
+                if (env('APP_DEBUG')) {
+                    throw new \Exception($ex->getMessage());
+                } else {
+                    throw $ex;
+                }
             }
         }
 
@@ -125,12 +129,18 @@ class PurchaseService
 
     private function setPoolNumbers(GiftCard $giftCard)
     {
+        $poolNumbers = [];
         /**
          * @var Address $address
          */
         foreach ($giftCard->addresses()->get() as $address) {
-            $address->pool_number = $address->getPoolNumber();
+            $poolNumber = $address->getPoolNumber();
+            $address->pool_number = $poolNumber;
             $address->save();
+
+            $poolNumbers[] = $poolNumber;
         }
+        $giftCard->pool_numbers = implode(', ', $poolNumbers);
+        $giftCard->save();
     }
 }

@@ -28,6 +28,14 @@ class Address extends Model
         return $this->belongsTo('App\Models\GiftCard', 'card_id', 'id');
     }
 
+    /**
+     * Get the shipping method that owns the address.
+     */
+    public function shippingMethod()
+    {
+        return $this->belongsTo('App\Models\ShippingMethod', 'shipping_id', 'id');
+    }
+
     public function getPoolNumber()
     {
         $poolNumber = 1068620000001;

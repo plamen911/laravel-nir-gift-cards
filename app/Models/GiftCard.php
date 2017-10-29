@@ -88,6 +88,8 @@ class GiftCard extends Model
             $address->state = '';
             $address->zip = '';
             $address->country = '';
+            $address->shipping_id = 0;
+            $address->shipping = 0;
             $address->save();
         }
     }

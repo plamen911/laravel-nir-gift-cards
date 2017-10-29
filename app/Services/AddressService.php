@@ -14,7 +14,7 @@ class AddressService
      * @param int $id
      * @return Address
      */
-    public function update(AddressPostRequest $request, int $id)
+    public function update(AddressPostRequest $request, $id)
     {
         $address = Address::find($id);
         if (!$address) {
@@ -41,8 +41,15 @@ class AddressService
         } else {
             $shippingMethod = ShippingMethod::find($request->shipping_id);
             if ($shippingMethod) {
+                $address->shipping_id = $shippingMethod->id;
+                $address->shipping = $shippingMethod->amount;
+                $address->save();
+
+                $giftCard = GiftCard::find($address->card_id);
+                $shipping = $giftCard->addresses->sum('shipping');
+
                 $giftCard->shipping_id = $shippingMethod->id;
-                $giftCard->shipping = $shippingMethod->amount;
+                $giftCard->shipping = $shipping;
                 $giftCard->total = ($giftCard->amount * $giftCard->quantity) + $giftCard->shipping;
                 $giftCard->save();
             }

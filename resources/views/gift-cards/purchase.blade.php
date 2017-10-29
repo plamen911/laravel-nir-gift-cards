@@ -10,75 +10,76 @@
 
     {{ Form::open(['url' => 'buy-gift-cards/' . $giftCard->id . '/purchase']) }}
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
+            <div class="col-sm-6">
+                <div class="form-group col-sm-6">
                     {!! Form::label('name', '* Name:') !!}
                     {!! Form::text('name', $giftCard->name, ['class'=>'form-control', 'id' => 'name']) !!}
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     {!! Form::label('email', '* Email Receipt To:') !!}
                     {!! Form::email('email', $giftCard->email, ['class'=>'form-control', 'id' => 'email']) !!}
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-12">
                     {!! Form::label('address', '* Billing Address 1:') !!}
                     {!! Form::text('address', $giftCard->address, ['class'=>'form-control', 'id' => 'address']) !!}
                     <span class="text-danger">{{ $errors->first('address') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-12">
                     {!! Form::label('address2', 'Address 2:') !!}
                     {!! Form::text('address2', $giftCard->address2, ['class'=>'form-control', 'id' => 'address2']) !!}
                     <span class="text-danger">{{ $errors->first('address2') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-4">
                     {!! Form::label('city', '* City:') !!}
                     {!! Form::text('city', $giftCard->city, ['class'=>'form-control', 'id' => 'city']) !!}
                     <span class="text-danger">{{ $errors->first('city') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-4">
                     {!! Form::label('state', '* State:') !!}
                     {!! Form::text('state', $giftCard->state, ['class'=>'form-control', 'id' => 'state']) !!}
                     <span class="text-danger">{{ $errors->first('state') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-4">
                     {!! Form::label('zip', '* Zip Code:') !!}
                     {!! Form::text('zip', $giftCard->zip, ['class'=>'form-control', 'id' => 'zip']) !!}
                     <span class="text-danger">{{ $errors->first('zip') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-12">
                     {!! Form::label('country', '* Country:') !!}
                     {!! Form::select('country', $countriesArray, $giftCard->country, ['class'=>'form-control', 'id' => 'country']) !!}
                     <span class="text-danger">{{ $errors->first('country') }}</span>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
+
+            <div class="col-sm-6">
+                <div class="form-group col-sm-6">
                     {!! Form::label('cctype', '* Select Credit Card:') !!}
                     {!! Form::select('cctype', $creditCardTypesArray, $giftCard->cctype, ['class'=>'form-control', 'id' => 'cctype']) !!}
                     <span class="text-danger">{{ $errors->first('cctype') }}</span>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('ccnumber', '* Enter Number:') !!}
+                <div class="form-group col-sm-12">
+                    {!! Form::label('ccnumber', '* Credit Card Number:') !!}
                     {!! Form::number('ccnumber', $giftCard->ccnumber, ['class'=>'form-control', 'id' => 'ccnumber']) !!}
                     <span class="text-danger">{{ $errors->first('ccnumber') }}</span>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('cvv', '* Enter CVV:') !!}
+                <div class="form-group col-sm-4">
+                    {!! Form::label('cvv', '*Security Code:') !!}
                     {!! Form::number('cvv', $giftCard->cvv, ['class'=>'form-control', 'id' => 'cvv']) !!}
                     <span class="text-danger">{{ $errors->first('cvv') }}</span>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('ccexp_month', '* Enter Exp Month(MM):') !!}
+                <div class="form-group col-sm-4">
+                    {!! Form::label('ccexp_month', '* Exp Month(MM):') !!}
                     {!! Form::number('ccexp_month', $giftCard->ccexp_month, ['class'=>'form-control', 'id' => 'ccexp_month']) !!}
                     <span class="text-danger">{{ $errors->first('ccexp_month') }}</span>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('ccexp_year', '* Enter Exp Year(YY):') !!}
+                <div class="form-group col-sm-4">
+                    {!! Form::label('ccexp_year', '* Exp Year(YY):') !!}
                     {!! Form::number('ccexp_year', $giftCard->ccexp_year, ['class'=>'form-control', 'id' => 'ccexp_year']) !!}
                     <span class="text-danger">{{ $errors->first('ccexp_year') }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-10">
                     {!! Form::label('phone', 'Phone Number:') !!}
                     {!! Form::number('phone', $giftCard->phone, ['class'=>'form-control', 'id' => 'phone']) !!}
                     <span class="text-danger">{{ $errors->first('phone') }}</span>
@@ -114,7 +115,7 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Please Submit Your Order</h3>

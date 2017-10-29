@@ -15,53 +15,6 @@ use App\Models\Address;
 use App\Models\GiftCard;
 use Illuminate\Support\Facades\Mail;
 
-Route::get('test', function () {
-
-
-    $giftCard = GiftCard::find(1);
-
-    foreach ($giftCard->addresses as $address) {
-
-
-        echo $address->email . '<br>';
-
-         Mail::send('emails.to-recipient', compact('giftCard', 'address'), function ($message) use ($address) {
-            if(!empty($address->email)) {
-                $message->from(env('FRIENDLY_SENDER_EMAIL'), 'Nantucket Island Resorts')
-                    ->to($address->email)
-                    ->subject('Your Nantucket Island Resorts Gift Card');
-
-                echo 'Sent to: ' . $address->email .'<br>';
-            }
-        });
-    }
-
-    dd('Done!');
-
-
-    $giftCards = GiftCard::where('status', 'Approved')->get();
-    $arr = [];
-    if ($giftCards) {
-        /**
-         * @var GiftCard[] $giftCards
-         */
-        foreach ($giftCards as $giftCard) {
-            /**
-             * @var Address $address
-             */
-            foreach ($giftCard->addresses()->get() as $address) {
-                $poolNumber = $address->getPoolNumber();
-                $arr[] = $poolNumber;
-                $address->pool_number = $poolNumber;
-                $address->save();
-            }
-        }
-    }
-
-    return 'Populated123: ' . print_r($arr, 1);
-
-});
-
 Route::get('test_email', 'EmailController@send');
 
 Route::get('/', 'GiftCardController@create');

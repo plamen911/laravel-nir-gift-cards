@@ -49,6 +49,7 @@ class CreateGiftCardsTable extends Migration
             $table->string('network_id')->nullable();
             $table->string('is_purchase_card')->nullable();
             $table->string('order_number')->nullable();
+            $table->text('pool_numbers')->nullable();
             $table->timestamps();
         });
     }

@@ -28,6 +28,14 @@ class ShippingMethod extends Model
         return $this->hasMany('App\Models\GiftCard')->orderBy('id');
     }
 
+    /**
+     * Get the addresses for the shipping method
+     */
+    public function addresses()
+    {
+        return $this->hasMany('App\Models\Address')->orderBy('id');
+    }
+
     // Get all Active status records in lists type
     public static function dropdown()
     {

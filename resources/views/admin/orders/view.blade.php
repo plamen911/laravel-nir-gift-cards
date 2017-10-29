@@ -75,12 +75,12 @@
                         </div>
                     </li>
                     @if (!$giftCard->isECertificate())
-                        <li class="list-group-item">
+                        {{--<li class="list-group-item">
                             <div class="row">
                                 <div class="col-sm-6">Shipping Method</div>
                                 <div class="col-sm-6">{{ $giftCard->shippingMethod->name }}</div>
                             </div>
-                        </li>
+                        </li>--}}
                     @endif
                     <li class="list-group-item">
                         <div class="row">
@@ -169,6 +169,12 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="row">
+                                <div class="col-sm-6">Card #</div>
+                                <div class="col-sm-6">{{ $address->pool_number }}</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
                                 <div class="col-sm-6">Name</div>
                                 <div class="col-sm-6">{{ $address->recipient }}</div>
                             </div>
@@ -222,6 +228,20 @@
                                     <div class="col-sm-6">{{ $address->country }}</div>
                                 </div>
                             </li>
+                            @if (!$giftCard->isECertificate())
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-6">Shipping</div>
+                                        <div class="col-sm-6">${{ number_format($address->shipping, 2) }}</div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-6">Shipping Method</div>
+                                        <div class="col-sm-6">{{ $address->shippingMethod->name }}</div>
+                                    </div>
+                                </li>
+                            @endif
                         @endif
                     </ul>
                 </div>

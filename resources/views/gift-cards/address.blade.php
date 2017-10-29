@@ -19,7 +19,7 @@
                     <span class="text-danger">{{ $errors->first('recipient') }}</span>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('email', 'Recipient\'s Email:') !!}
+                    {!! Form::label('email', '* Recipient\'s Email:') !!}
                     {!! Form::email('email', $address->email, ['class'=>'form-control', 'id' => 'email']) !!}
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 </div>
@@ -63,6 +63,18 @@
                         {!! Form::select('country', $countriesArray, $address->country, ['class'=>'form-control', 'id' => 'country']) !!}
                         <span class="text-danger">{{ $errors->first('country') }}</span>
                     </div>
+
+                    @if (!$giftCard->isECertificate())
+                        <div class="form-group">
+                            {!! Form::label('shipping_id', 'Shipping Method:') !!}
+                            {!! Form::select('shipping_id', $shippingMethodsArray, $giftCard->shipping_id, ['class'=>'form-control', 'id' => 'shipping_id']) !!}
+                            <span class="text-danger">{{ $errors->first('shipping_id') }}</span>
+                            <p id="shippingMethodNote" class="help-block">
+                                <i>Note: International shipping will be calculated when the gift card is mailed.</i>
+                            </p>
+                        </div>
+                    @endif
+
                 @endif
             </div>
         </div>
@@ -74,21 +86,6 @@
                 Next <span class="glyphicon glyphicon-chevron-right"></span>
             </button>
         </div>
-        @if (!$giftCard->isECertificate())
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {!! Form::label('shipping_id', 'Shipping Method:') !!}
-                        {!! Form::select('shipping_id', $shippingMethodsArray, $giftCard->shipping_id, ['class'=>'form-control', 'id' => 'shipping_id']) !!}
-                        <span class="text-danger">{{ $errors->first('shipping_id') }}</span>
-                        <p id="shippingMethodNote" class="help-block">
-                            <i>Note: International shipping will be calculated when the gift card is mailed.</i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        @endif
     {{ Form::close() }}
     <hr>
     <div class="row">

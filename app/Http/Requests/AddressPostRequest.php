@@ -25,7 +25,7 @@ class AddressPostRequest extends FormRequest
     {
         return [
             'recipient' => 'required',
-            'email' => 'nullable|email',
+            'email' => 'required|email',
             'address' => 'required_if:delivery_id,==,1',
             'city' => 'required_if:delivery_id,==,1',
             'state' => 'required_if:delivery_id,==,1',
